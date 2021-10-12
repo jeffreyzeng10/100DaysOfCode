@@ -10,10 +10,9 @@ def caesar(start_text, shift_amount, cipher_direction):
     if cipher_direction == 'encode':
         for character in start_text:
             if character in alphabet:
-                for n, letter in enumerate(alphabet):
-                    if character == letter:
-                        output.append(alphabet[(n+shift_amount)%26])
-                        break
+                position = alphabet.index(character)
+                new_position = (position + shift_amount)%26
+                output.append(alphabet[new_position])
             else:
                 output.append(character)
         final = ''
@@ -22,10 +21,9 @@ def caesar(start_text, shift_amount, cipher_direction):
     elif command == 'decode':
         for character in start_text:
             if character in alphabet:
-                for n, letter in enumerate(alphabet):
-                    if character == letter:
-                        output.append(alphabet[n-shift_amount])
-                        break
+                position = alphabet.index(character)
+                new_position = position - shift_amount
+                output.append(alphabet[new_position])
             else:
                 output.append(character)
         final = ''
